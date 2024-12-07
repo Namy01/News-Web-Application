@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{%  block content %}
+<div class="row">
+    <div class="col">
+        <div class="post">
+            <h1 class="fw-bold fs-2 fs-md-1 text-dark" >
+                <a href="">{{ post.title }}</a>
+            </h1>
+            {% if request.user.is_authenticated %}
+                <div class="mt-2 my-2" style="float:right;">
+                    <a href="{% url 'post-publish' post.pk %}" class="btn btn-success ">
+                       Publish
+                    </a>
+                    <a href="{% url 'edit' post.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete' post.id %}" class="btn btn-danger">Delete</a>
+                </div>
+                {% endif %}
+            <div class ="text-muted fst-italic" class="date author">@ {{ post.author.username }} </div>
+            <img src="{{ post.image.url }}" class="card-img-top mt-2" alt="img" style="height: auto; width: 500px;  object-fit: cover;">
+
+            <p>
+                {{ post.content|linebreaksbr }}
+                
+            </p>
+            
+        </div>
+        
+    </div>
+</div>
+{%  endblock content %}

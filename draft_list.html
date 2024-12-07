@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <div class="row mt-2">
+        {% for post in posts %}
+        <div class="col-md-6 mb-4">
+            <div class="card post" style="width:100%;">
+                <div class="card-body">
+                    <h2 class="card-title ">
+                        <a  href="{% url 'draft-detail' post.id %}" style="text-decoration: none; color: black;">{{ post.title }}</a>
+                    </h2>
+                    <h5 class="card-text text-muted fst-italic">@ {{ post.author.username }}</h5>
+                    <img src="{{ post.image.url }}"  class="card-img-top" alt="img" style="height: auto; width:200px ;  float: right ;">
+                    <p class="card-text">{{ post.content|truncatechars:200 }} 
+                        <a href="{% url 'draft-detail' post.id %}">View More</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
+
+
